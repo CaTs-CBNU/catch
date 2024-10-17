@@ -1,0 +1,40 @@
+<resources>
+    <string name="app_name">캐치</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string-array name="story_topics">
+        <item>판타지</item>
+        <item>과학 소설</item>
+        <item>스릴러</item>
+        <item>드라마</item>
+        <item>모험</item>
+        <item>로맨스</item>
+        <item>미스터리</item>
+        <item>역사</item>
+        <item>공상 과학</item>
+        <item>슈퍼히어로</item>
+        <item>범죄</item>
+        <item>심리 스릴러</item>
+        <item>서부극</item>
+        <item>판타지 로맨스</item>
+        <item>포스트 아포칼립스</item>
+        <item>가족</item>
+        <item>철학적 이야기</item>
+        <item>코미디</item>
+        <item>탐정 이야기</item>
+        <item>도시 판타지</item>
+        <item>생존</item>
+        <item>스포츠</item>
+        <item>전쟁</item>
+        <item>마법과 모험</item>
+        <item>인생 이야기</item>
+        <item>음악과 예술</item>
+        <item>친구와 우정</item>
+        <item>동물과 자연</item>
+        <item>시간 여행</item>
+        <item>지구 외의 세계</item>
+    </string-array>
+
+    <string name="image_saved">이미지 저장</string>
+</resources>

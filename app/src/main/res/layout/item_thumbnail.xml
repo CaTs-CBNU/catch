@@ -1,0 +1,31 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="8dp">
+
+
+
+    <!-- Thumbnail Image inside CardView -->
+    <ImageView
+        android:id="@+id/thumbnailImage"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:scaleType="centerCrop"
+        android:background="@color/white" />
+
+        <!-- Number Text below Thumbnail -->
+    <TextView
+        android:id="@+id/thumbnailNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="1"
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        android:fontFamily="@font/crr"
+        android:textAlignment="center"
+        />
+</LinearLayout>

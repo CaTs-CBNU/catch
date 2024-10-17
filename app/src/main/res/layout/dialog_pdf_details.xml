@@ -1,0 +1,21 @@
+<!-- res/layout/dialog_pdf_details.xml -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <EditText
+        android:id="@+id/pdfNameInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="PDF 파일 이름"
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/storyTitleInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="이야기 제목"
+        android:inputType="text" />
+</LinearLayout>

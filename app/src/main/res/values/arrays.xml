@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="background_atmosphere" >
+        <item>어두운</item>
+        <item>밝은</item>
+        <item>평화로운</item>
+        <item>불안한</item>
+        <item>흥분한</item>
+        <item>우울한</item>
+        <item>행복한</item>
+        <item>무서운</item>
+        <item>신비로운</item>
+        <item>희망찬</item>
+        <item>평범한</item>
+        <item>비현실적인</item>
+        <item>현실적인</item>
+        <item>비극적인</item>
+        <item>코믹</item>
+    </string-array>
+    <string-array name="background_location" >
+        <item>도시</item>
+        <item>숲</item>
+        <item>바다</item>
+        <item>산</item>
+        <item>사막</item>
+        <item>농장</item>
+        <item>공장</item>
+        <item>학교</item>
+        <item>병원</item>
+        <item>교회</item>
+        <item>공원</item>
+        <item>묘지</item>
+        <item>박물관</item>
+        <item>도서관</item>
+        <item>카페</item>
+        <item>식당</item>
+        <item>백화점</item>
+        <item>영화관</item>
+        <item>공항</item>
+        <item>역</item>
+        <item>버스 정류장</item>
+    </string-array>
+    <!-- 예시 드롭다운 리스트 -->
+    <string-array name="plot_examples">
+        <item>어린 소녀 엘리가 마법의 숲에서 만난 동물 친구들과 함께, 숲을 지키기 위해 나무를 해치는 마녀를 물리치는 모험 이야기</item>
+        <item>용감한 기사 레온이 마을 사람들을 괴롭히는 용을 찾아 떠나, 용과 친구가 되어 함께 마을을 지키게 되는 이야기</item>
+        <item>평범한 학생이었던 수현이 갑작스러운 마법 능력을 얻게 되어, 마법 학교에서 친구들과 함께 어둠의 세력을 물리치는 이야기</item>
+        <item>우주 탐험가 지훈이 외계 생명체와 소통하며 새로운 행성의 비밀을 풀어내고, 평화를 유지하는 방법을 찾는 이야기</item>
+        <item>전쟁 속에서 가족을 잃은 어린 왕자 에밀이, 왕국을 되찾기 위해 용병 친구들과 힘을 합쳐 악한 군주를 몰아내는 이야기</item>
+        <item>천재 발명가 민준이 기계 친구 로봇과 함께 시간 여행을 떠나 과거의 문제를 해결하며 현재로 돌아오는 이야기</item>
+        <item>마법사 리아가 잃어버린 친구를 찾아 떠나는 여정에서, 다양한 마법 생물들과 우정을 쌓고, 악당으로부터 세상을 구하는 이야기</item>
+        <item>강아지 샘이 주인을 찾아 멀고 험한 도시를 탐험하며, 길고양이 친구들과 힘을 합쳐 주인을 다시 만나게 되는 감동적인 이야기</item>
+        <item>평범한 고등학생 민지가, 미래의 자신이 보낸 편지를 통해 미래를 바꾸기 위해 노력하며, 자신의 운명을 바꾸는 이야기</item>
+        <item>평범한 직장인 성민이, 갑작스러운 시간 여행을 통해 과거의 실수를 바로잡고, 미래의 자신을 구하는 이야기</item>
+        <item>외로운 늑대 사냥꾼 케이가, 마음의 벽을 허물고 인간과 동물 친구들과 함께 지구를 지키기 위한 모험을 떠나는 이야기</item>
+        <item>기억을 잃은 마법사 에르마가 잃어버린 과거를 되찾기 위해, 퍼즐을 맞춰 가며 진실을 찾는 여정의 이야기</item>
+        <item>청년 예술가 하진이 꿈속에서 만난 고대 신화 속 존재들과 함께, 영감을 찾아 떠나는 미스터리한 이야기</item>
+        <item>평범한 고양이 쿠루가 주인의 도움으로 초능력을 얻어, 동네를 위협하는 도둑 무리와 맞서는 이야기</item>
+        <item>미래 도시의 경찰관 민수가 AI 파트너와 협력하여, 범죄를 해결하고 인간과 인공지능의 공존을 도모하는 이야기</item>
+        <item>고등학생 혜진이 시공간을 초월하여 다른 시대의 친구들과 교류하며, 각자의 세계를 구하기 위해 힘을 합치는 이야기</item>
+        <item>평범한 바리스타 은비가 카페에 찾아온 신비로운 손님들과 대화하며, 삶의 의미를 찾아가는 따뜻한 이야기</item>
+        <item>어린 시절의 트라우마를 극복하기 위해 과거로 돌아간 주인공 태훈이, 잃어버린 가족의 사랑을 다시 발견하는 이야기</item>
+        <item>모험가 나연이 미지의 정글에서 마주한 전설 속 생물과 우정을 쌓으며, 자연의 비밀을 발견하는 이야기</item>
+        <item>비밀 요원 다연이 동료들과 함께 음모를 밝혀내고, 세상을 구하기 위한 스릴 넘치는 모험에 도전하는 이야기</item>
+    </string-array>
+    <string-array name="genre_options" >
+        <item>수채화</item>
+        <item>페인팅</item>
+        <item>스케치</item>
+        <item>일러스트</item>
+        <item>만화</item>
+        <item>웹툰</item>
+        <item>현실감 있는 디지털 아트</item>
+        <item>스팀펑크</item>
+        <item>고풍스러운 유화</item>
+        <item>세련된 초상화</item>
+        <item>추상적인 드로잉</item>
+        <item>포스터 아트</item>
+        <item>픽셀 아트</item>
+        <item>고전 동화 스타일</item>
+        <item>비현실적인 몽환적 스타일</item>
+        <item>게임 캐릭터 일러스트</item>
+    </string-array>
+    <string-array name="composition_options" >
+        <item>클로즈업</item>
+        <item>전신이 보이는</item>
+        <item>멀리서 본 장면</item>
+        <item>뒷모습</item>
+        <item>측면</item>
+        <item>위에서 내려다본</item>
+        <item>아래에서 올려다본</item>
+        <item>시점이 바뀌는</item>
+        <item>시간이 흐르는</item>
+        <item>역동적인</item>
+        <item>감정이 드러나는 클로즈업</item>
+        <item>대조적인 빛과 그림자</item>
+        <item>특별한 각도에서 본</item>
+        <item>대칭적인 구도</item>
+        <item>초점이 흐려지는</item>
+        <item>화려한 배경과 함께</item>
+        <item>주변 환경에 몰입된</item>
+        <item>회상 장면 같은</item>
+        <item>따뜻한 분위기의 조명</item>
+        <item>극적인 액션 포즈</item>
+    </string-array>
+</resources>

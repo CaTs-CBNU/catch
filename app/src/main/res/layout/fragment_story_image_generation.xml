@@ -1,0 +1,360 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:padding="16dp"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".story.fragments.StoryImageGenerationFragment">
+
+    <!-- 스크롤이 가능한 NestedScrollView로 감싸기 -->
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/pollinateButton">
+
+        <!-- 안에 기존 내용 추가 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Prompt Text Field -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/promptInputLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:endIconDrawable="@drawable/baseline_help_24"
+                app:endIconMode="custom"
+                android:layout_marginTop="16dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/promptEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="프롬프트입력"
+                    android:fontFamily="@font/crr"
+                    android:imeOptions="actionDone"
+                    app:boxStrokeColor="@color/cat_ch"
+                    android:scrollbars="vertical"
+                    android:overScrollMode="ifContentScrolls"
+                    android:maxLines="5"
+                    android:minLines="3" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp">
+
+                <!-- Advanced Options Toggle -->
+                <TextView
+                    android:id="@+id/advancedOptionsTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="고급 옵션"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/crr"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginEnd="4dp" />
+
+                <!-- Advanced options help icon -->
+                <ImageView
+                    android:id="@+id/advancedOptionsHelpIcon"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/baseline_help_24"
+                    android:contentDescription="고급 옵션 도움말" />
+            </LinearLayout>
+
+            <!-- Advanced Options Container -->
+            <LinearLayout
+                android:id="@+id/advancedOptionsContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:orientation="vertical"
+                android:visibility="gone"
+                android:padding="16dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <!-- Model Dropdown -->
+                    <TextView
+                        android:id="@+id/labelModel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="모델"
+                        android:fontFamily="@font/crr"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:layout_marginStart="4dp"
+                        android:layout_marginBottom="8dp" />
+
+                    <ImageView
+                        android:id="@+id/modelHelpIcon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/baseline_help_24"
+                        android:contentDescription="모델 도움말"
+                        android:layout_marginStart="4dp"/>
+
+                </LinearLayout>
+
+
+
+                <com.skydoves.powerspinner.PowerSpinnerView
+                    android:id="@+id/modelDropdown"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp"
+                    android:background="@drawable/shape_spinner_box"
+                    app:spinner_arrow_gravity="end"
+                    app:spinner_divider_color="@color/cat_ch"
+                    app:spinner_popup_background="@color/white"
+                    app:spinner_divider_show="true"
+                    app:fontFamily="@font/crr"
+                    android:textColor="@color/black"
+                    app:spinner_arrow_drawable="@drawable/baseline_arrow_drop_down_24"
+                    android:fontFamily="@font/crr" />
+
+                <LinearLayout
+                    android:id="@+id/advancedOptionsContainer2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginTop="16dp">
+                    <!-- Genre Dropdown -->
+                    <TextView
+                        android:id="@+id/labelGenre"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="장르"
+                        android:fontFamily="@font/crr"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginStart="4dp"
+                        android:layout_marginBottom="8dp" />
+
+                    <com.skydoves.powerspinner.PowerSpinnerView
+                        android:id="@+id/genreDropdown"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="16dp"
+                        app:spinner_item_array="@array/genre_options"
+                        android:background="@drawable/shape_spinner_box"
+                        app:spinner_arrow_gravity="end"
+                        app:spinner_divider_color="@color/cat_ch"
+                        app:spinner_popup_background="@color/white"
+                        app:spinner_divider_show="true"
+                        app:fontFamily="@font/crr"
+                        android:textColor="@color/black"
+                        app:spinner_arrow_drawable="@drawable/baseline_arrow_drop_down_24"
+                        android:fontFamily="@font/crr" />
+
+                    <!-- Composition Dropdown -->
+                    <TextView
+                        android:id="@+id/labelComposition"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="구도"
+                        android:fontFamily="@font/crr"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginStart="4dp"
+                        android:layout_marginBottom="8dp" />
+
+                    <com.skydoves.powerspinner.PowerSpinnerView
+                        android:id="@+id/compositionDropdown"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="16dp"
+                        app:spinner_item_array="@array/composition_options"
+                        android:background="@drawable/shape_spinner_box"
+                        app:spinner_arrow_gravity="end"
+                        app:spinner_divider_color="@color/cat_ch"
+                        app:spinner_popup_background="@color/white"
+                        app:spinner_divider_show="true"
+                        app:fontFamily="@font/crr"
+                        android:textColor="@color/black"
+                        app:spinner_arrow_drawable="@drawable/baseline_arrow_drop_down_24"
+                        android:fontFamily="@font/crr" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/advancedOptionsContainer3"
+                    android:orientation="vertical">
+                    <!-- Size Selection Row -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="16dp">
+
+                        <!-- Width Dropdown -->
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:paddingEnd="4dp">
+
+                            <TextView
+                                android:id="@+id/labelWidth"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="너비"
+                                android:fontFamily="@font/crr"
+                                android:textAppearance="?android:attr/textAppearanceSmall"
+                                android:layout_marginStart="4dp"
+                                android:layout_marginBottom="8dp" />
+
+                            <com.skydoves.powerspinner.PowerSpinnerView
+                                android:id="@+id/widthDropdown"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                style="@style/Widget.AppCompat.Spinner.Underlined"
+                                android:padding="16dp"
+                                android:spinnerMode="dropdown"
+                                android:background="@drawable/shape_spinner_box"
+                                app:spinner_arrow_gravity="end"
+                                app:spinner_divider_color="@color/cat_ch"
+                                app:spinner_popup_background="@color/white"
+                                app:spinner_divider_show="true"
+                                app:fontFamily="@font/crr"
+                                android:textColor="@color/black"
+                                app:spinner_arrow_drawable="@drawable/baseline_arrow_drop_down_24"
+                                android:fontFamily="@font/crr"/>
+                        </LinearLayout>
+
+                        <!-- Height Dropdown -->
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/labelHeight"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="높이"
+                                android:fontFamily="@font/crr"
+                                android:textAppearance="?android:attr/textAppearanceSmall"
+                                android:layout_marginStart="4dp"
+                                android:layout_marginBottom="8dp" />
+
+                            <com.skydoves.powerspinner.PowerSpinnerView
+                                android:id="@+id/heightDropdown"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:padding="16dp"
+                                style="@style/Widget.AppCompat.Spinner.Underlined"
+                                android:background="@drawable/shape_spinner_box"
+                                app:spinner_arrow_gravity="end"
+                                app:spinner_divider_color="@color/cat_ch"
+                                app:spinner_popup_background="@color/white"
+                                app:spinner_divider_show="true"
+                                app:fontFamily="@font/crr"
+                                android:textColor="@color/black"
+                                app:spinner_arrow_drawable="@drawable/baseline_arrow_drop_down_24"
+                                android:fontFamily="@font/crr"
+                                android:spinnerMode="dropdown" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+                <!-- Checkboxes Row -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="16dp"
+                    android:gravity="center">
+
+                    <!-- No Logo Checkbox -->
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
+
+                        <CheckBox
+                            android:id="@+id/noLogoCheckbox"
+                            android:layout_width="wrap_content"
+                            android:checked="true"
+                            android:clickable="false"
+                            android:focusable="false"
+                            android:layout_height="wrap_content" />
+
+                        <TextView
+                            android:id="@+id/labelNoLogo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="로고 없음"
+                            android:fontFamily="@font/crr"
+                            android:layout_marginStart="4dp" />
+                    </LinearLayout>
+
+                    <!-- Spacer -->
+                    <Space
+                        android:layout_width="32dp"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <!-- Pollinate Button -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/pollinateButton"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:text="이미지 생성"
+        android:fontFamily="@font/crr"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:backgroundTint="@color/cat_ch"
+        android:enabled="true"/>
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true">
+        <com.google.android.material.progressindicator.CircularProgressIndicator
+            android:id="@+id/progressIndicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:indeterminate="true"
+            app:trackCornerRadius="4dp"
+            android:indeterminateTint="@color/cat_ch"
+            app:indicatorSize="40dp"/>
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/successAnimation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:lottie_rawRes="@raw/success"/>
+    </FrameLayout>
+
+    <com.google.android.material.progressindicator.LinearProgressIndicator
+        android:id="@+id/progressIndicatorPrompt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:indeterminate="true"
+        android:layout_marginTop="16dp"
+        app:trackCornerRadius="4dp"
+        app:indicatorColor="@color/cat_ch" />
+
+</RelativeLayout>

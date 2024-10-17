@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".story.fragments.StoryCharacterFragment"
+    android:padding="16dp">
+
+    <!-- Title for character selection -->
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="등장인물을 설정해주세요!"
+        android:textColor="@color/black"
+        android:fontFamily="@font/crbb"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="16dp" />
+
+    <!-- Help icon for additional information -->
+
+    <!-- EditText for character name -->
+    <ImageView
+        android:id="@+id/helpIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:contentDescription="도움말 아이콘"
+        android:src="@drawable/baseline_help_24"
+        app:layout_constraintBottom_toBottomOf="@id/tv_title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.136"
+        app:layout_constraintStart_toEndOf="@id/tv_title"
+        app:layout_constraintTop_toTopOf="@id/tv_title"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <EditText
+        android:id="@+id/et_character_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:hint="등장인물 이름"
+        android:imeOptions="actionNext"
+        android:fontFamily="@font/crr"
+        app:layout_constraintTop_toBottomOf="@id/tv_title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:textColor="@color/black"
+        android:layout_marginBottom="8dp" />
+
+    <!-- EditText for character role -->
+    <EditText
+        android:id="@+id/et_character_role"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="역할"
+        android:textColor="@color/black"
+        android:fontFamily="@font/crr"
+        app:layout_constraintTop_toBottomOf="@id/et_character_name"
+        android:imeOptions="actionNext"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="16dp" />
+
+    <!-- Button to add more characters -->
+    <Button
+        android:id="@+id/btn_add_character"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="등장인물 추가하기"
+        android:fontFamily="@font/crr"
+        android:backgroundTint="#FFD653"
+        android:textColor="@color/black"
+        app:layout_constraintTop_toBottomOf="@id/et_character_role"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="16dp" />
+
+    <!-- RecyclerView to display character-role pairs -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view_character_roles"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/btn_add_character"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/btn_next"
+        android:layout_marginBottom="16dp" />
+
+    <!-- Confirm Button -->
+    <Button
+        android:id="@+id/btn_next"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="확인"
+        android:fontFamily="@font/crr"
+        android:backgroundTint="#FFD653"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".story.fragments.StoryResultFragment">
+
+    <!-- ScrollView to allow scrolling if the content is large -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <!-- ImageView for displaying the generated image -->
+            <ImageView
+                android:id="@+id/generated_image_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:scaleType="fitCenter"
+                android:adjustViewBounds="true"
+                android:layout_marginBottom="16dp" />
+
+            <!-- TextView for displaying the generated story -->
+            <TextView
+                android:id="@+id/generated_story_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/black"
+                android:textSize="16sp"
+                android:fontFamily="@font/crr"
+                android:layout_marginTop="16dp"
+                android:text="이야기" />
+
+            <!-- Empty Space to push the button to the bottom -->
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <!-- Save Button at the bottom -->
+            <Button
+                android:id="@+id/save_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="이야기 저장"
+                android:fontFamily="@font/crr"
+                android:textColor="@color/black"
+                android:backgroundTint="@color/cat_ch"
+                android:layout_marginTop="32dp"
+                android:layout_gravity="center" />
+        </LinearLayout>
+
+    </ScrollView>
+
+</FrameLayout>

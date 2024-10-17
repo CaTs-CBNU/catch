@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#E3F2FD"
+    tools:context=".splash.SplashActivity">
+
+    <!-- 첫 번째 텍스트: "자신만의 이야기를" -->
+    <TextView
+        android:id="@+id/text_intro"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:alpha="0"
+        android:fontFamily="@font/crr"
+        android:text="자신만의 이야기를"
+        android:textColor="@android:color/black"
+        android:textSize="24sp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="150dp"/>
+
+    <!-- 가로 레이아웃으로 배치된 "스", "캐", "치" 텍스트 -->
+    <LinearLayout
+        android:id="@+id/layout_sketch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:alpha="0"
+        app:layout_constraintTop_toBottomOf="@id/text_intro"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp">
+
+        <!-- 두 번째 텍스트: "스" -->
+        <TextView
+            android:id="@+id/text_s"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/crb"
+            android:text="스"
+            android:textColor="@android:color/black"
+            android:textSize="24sp" />
+
+        <!-- 세 번째 텍스트: "캐" -->
+        <TextView
+            android:id="@+id/text_catch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/crb"
+            android:text="캐"
+            android:textColor="@android:color/holo_blue_dark"
+            android:textSize="24sp" />
+
+        <!-- 네 번째 텍스트: "치" -->
+        <TextView
+            android:id="@+id/text_tch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/crb"
+            android:text="치"
+            android:textColor="@android:color/holo_blue_dark"
+            android:textSize="24sp" />
+    </LinearLayout>
+
+    <!-- 마지막 텍스트: "해보세요" -->
+    <TextView
+        android:id="@+id/text_end"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:alpha="0"
+        android:fontFamily="@font/crr"
+        android:text="해보세요"
+        android:textColor="@android:color/black"
+        android:textSize="24sp"
+        app:layout_constraintTop_toBottomOf="@id/layout_sketch"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <!-- Background color for the plot input area -->
+    <color name="plot_background">#F5F5F5</color> <!-- Light grey color -->
+    <!-- Text color for the plot input area -->
+    <color name="plot_text_color">#000000</color> <!-- Black color -->
+    <color name="hint_text_color">#A9A9A9</color> <!-- Light grey color -->
+    <color name="story_preview_background">#E8EAF6</color> <!-- Light blue color -->
+    <color name="story_preview_text">#1497D2</color> <!-- Black color -->
+    <color name="cat_ch">#FFD653</color>
+
+</resources>

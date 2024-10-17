@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/shareImage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="이미지 공유하기"
+        android:padding="12dp"
+        android:gravity="center"
+        android:textColor="@color/cat_ch"
+        android:textSize="16sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="#E0E0E0" />
+
+    <TextView
+        android:id="@+id/shareStory"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="스토리 공유하기"
+        android:padding="12dp"
+        android:gravity="center"
+        android:textColor="@color/cat_ch"
+        android:textSize="16sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="#E0E0E0" />
+
+    <TextView
+        android:id="@+id/closeDialog"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="닫기"
+        android:padding="12dp"
+        android:gravity="center"
+        android:textColor="@color/cat_ch"
+        android:textSize="16sp" />
+</LinearLayout>

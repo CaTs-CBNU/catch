@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/story"
+        android:title="스토리"
+        android:icon="@drawable/baseline_create_24"/>
+
+    <item
+        android:id="@+id/bookmark"
+        android:title="PDF"
+        android:icon="@drawable/baseline_bookmark_24"/>
+</menu>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/gallery_nav_graph"
+    app:startDestination="@id/galleryStoriesFragment">
+
+    <fragment
+        android:id="@+id/galleryStoriesFragment"
+        android:name="com.cbnu.cat_ch.gallery.fragments.GalleryStoriesFragment"
+        android:label="fragment_gallery_stories"
+        tools:layout="@layout/fragment_gallery_stories" >
+        <action
+            android:id="@+id/action_galleryStoriesFragment_to_galleryStoryDetailedFragment"
+            app:destination="@id/galleryStoryDetailedFragment" />
+        <action
+            android:id="@+id/action_galleryStoriesFragment_to_galleryPdfGeneratorFragment"
+            app:destination="@id/galleryPdfGeneratorFragment" />
+        <action
+            android:id="@+id/action_galleryStoriesFragment_to_pdfPreviewFragment"
+            app:destination="@id/pdfPreviewFragment" />
+
+    </fragment>
+    <fragment
+        android:id="@+id/galleryStoryDetailedFragment"
+        android:name="com.cbnu.cat_ch.gallery.fragments.GalleryStoryDetailedFragment"
+        android:label="fragment_gallery_story_detailed"
+        tools:layout="@layout/fragment_gallery_story_detailed" >
+        <action
+            android:id="@+id/action_galleryStoryDetailedFragment_to_galleryPdfGeneratorFragment"
+            app:destination="@id/galleryPdfGeneratorFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/galleryPdfGeneratorFragment"
+        android:name="com.cbnu.cat_ch.gallery.fragments.GalleryPdfGeneratorFragment"
+        android:label="fragment_gallery_pdf_generator"
+        tools:layout="@layout/fragment_gallery_pdf_generator" >
+        <action
+            android:id="@+id/action_galleryPdfGeneratorFragment_to_pdfPreviewFragment"
+            app:destination="@id/pdfPreviewFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/pdfPreviewFragment"
+        android:name="com.cbnu.cat_ch.gallery.util.PdfPreviewFragment"
+        android:label="fragment_pdf_preview"
+        tools:layout="@layout/fragment_pdf_preview" />
+</navigation>

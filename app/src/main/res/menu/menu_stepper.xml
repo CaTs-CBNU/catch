@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/step_1_dest"
+        android:title="주제" />
+
+    <item android:id="@+id/step_2_dest"
+        android:title="등장\n인물" />
+
+    <item android:id="@+id/step_3_dest"
+        android:title="플롯" />
+
+    <item android:id="@+id/step_4_dest"
+        android:title="배경" />
+
+    <item android:id="@+id/step_5_dest"
+        android:title="소설\n생성" />
+
+    <item android:id="@+id/step_6_dest"
+        android:title="사진\n생성" />
+
+    <item android:id="@+id/step_7_dest"
+        android:title="미리\n보기" />
+</menu>

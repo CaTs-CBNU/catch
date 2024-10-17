@@ -1,0 +1,13 @@
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/action_delete"
+        android:title="Delete"
+        android:icon="@drawable/baseline_delete_outline_24"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/action_proceed"
+        android:title="Proceed"
+        android:icon="@drawable/baseline_picture_as_pdf_24"
+        app:showAsAction="ifRoom" />
+</menu>

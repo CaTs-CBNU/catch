@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".gallery.util.PdfPreviewFragment">
+
+    <!-- Page information TextView -->
+    <TextView
+        android:id="@+id/tv_page_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="페이지 1/1"
+        android:fontFamily="@font/crr"
+        android:padding="8dp"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center"
+        android:textSize="16sp"
+        android:background="@color/white"
+        android:textColor="@color/black" />
+
+    <!-- PDFView for displaying the PDF -->
+    <com.github.barteksc.pdfviewer.PDFView
+        android:id="@+id/pdfView"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_weight="1" />
+
+</LinearLayout>

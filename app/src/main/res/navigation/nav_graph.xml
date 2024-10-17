@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/storyTopicFragment">
+
+    <fragment
+        android:id="@+id/storyTopicFragment"
+        android:name="com.cbnu.cat_ch.story.fragments.StoryTopicFragment"
+        android:label="fragment_story_topic"
+        tools:layout="@layout/fragment_story_topic" >
+        <action
+            android:id="@+id/action_storyTopicFragment_to_storyCharacterFragment"
+            app:destination="@id/storyCharacterFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/storyCharacterFragment"
+        android:name="com.cbnu.cat_ch.story.fragments.StoryCharacterFragment"
+        android:label="fragment_story_character"
+        tools:layout="@layout/fragment_story_character" >
+        <action
+            android:id="@+id/action_storyCharacterFragment_to_storyPlotFragment"
+            app:destination="@id/storyPlotFragment" />
+        <action
+            android:id="@+id/action_storyCharacterFragment_to_storyTopicFragment"
+            app:destination="@id/storyTopicFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/storyPlotFragment"
+        android:name="com.cbnu.cat_ch.story.fragments.StoryPlotFragment"
+        android:label="fragment_story_plot"
+        tools:layout="@layout/fragment_story_plot" >
+        <action
+            android:id="@+id/action_storyPlotFragment_to_storyBackgroundFragment"
+            app:destination="@id/storyBackgroundFragment" />
+        <action
+            android:id="@+id/action_storyPlotFragment_to_storyCharacterFragment"
+            app:destination="@id/storyCharacterFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/storyBackgroundFragment"
+        android:name="com.cbnu.cat_ch.story.fragments.StoryBackgroundFragment"
+        android:label="fragment_story_background"
+        tools:layout="@layout/fragment_story_background" >
+        <action
+            android:id="@+id/action_storyBackgroundFragment_to_storyPreviewFragment"
+            app:destination="@id/storyPreviewFragment" />
+        <action
+            android:id="@+id/action_storyBackgroundFragment_to_storyPlotFragment"
+            app:destination="@id/storyPlotFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/storyPreviewFragment"
+        android:name="com.cbnu.cat_ch.story.fragments.StoryPreviewFragment"
+        android:label="fragment_story_preview"
+        tools:layout="@layout/fragment_story_preview" >
+        <action
+            android:id="@+id/action_storyPreviewFragment_to_storyImageGenerationFragment"
+            app:destination="@id/storyImageGenerationFragment" />
+        <action
+            android:id="@+id/action_storyPreviewFragment_to_storyBackgroundFragment"
+            app:destination="@id/storyBackgroundFragment" />
+    </fragment>
+    <activity
+        android:id="@+id/mainActivity"
+        android:name="com.cbnu.cat_ch.MainActivity"
+        android:label="activity_main"
+        tools:layout="@layout/activity_main" />
+    <fragment
+        android:id="@+id/storyImageGenerationFragment"
+        android:name="com.cbnu.cat_ch.story.fragments.StoryImageGenerationFragment"
+        android:label="fragment_story_image_generation"
+        tools:layout="@layout/fragment_story_image_generation" >
+
+        <action
+            android:id="@+id/action_storyImageGenerationFragment_to_storyPreviewFragment"
+            app:destination="@id/storyPreviewFragment" />
+        <action
+            android:id="@+id/action_storyImageGenerationFragment_to_storyResultFragment"
+            app:destination="@id/storyResultFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/storyResultFragment"
+        android:name="com.cbnu.cat_ch.story.fragments.StoryResultFragment"
+        android:label="fragment_story_result"
+        tools:layout="@layout/fragment_story_result" >
+        <action
+            android:id="@+id/action_storyResultFragment_to_mainActivity"
+            app:destination="@id/mainActivity" />
+        <action
+            android:id="@+id/action_storyResultFragment_to_storyImageGenerationFragment"
+            app:destination="@id/storyImageGenerationFragment" />
+    </fragment>
+</navigation>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:cardview="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    cardview:cardBackgroundColor="?attr/colorSurface"> <!-- Material 배경색 설정 -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Label for character name -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="등장인물 이름"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:fontFamily="@font/crbb"
+            android:layout_marginBottom="4dp" />
+
+        <EditText
+            android:id="@+id/et_edit_character_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="등장인물 이름"
+            android:imeOptions="actionNext"
+            android:fontFamily="@font/crr"
+            android:inputType="text"/>
+
+        <!-- Label for character role -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="역할"
+            android:fontFamily="@font/crbb"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="4dp" />
+
+        <EditText
+            android:id="@+id/et_edit_character_role"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="역할"
+            android:imeOptions="actionNext"
+            android:fontFamily="@font/crr"
+            android:inputType="text"/>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
