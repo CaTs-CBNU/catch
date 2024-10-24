@@ -27,6 +27,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="등장인물 이름"
+            android:minHeight="48dp"
             android:imeOptions="actionNext"
             android:fontFamily="@font/crr"
             android:inputType="text"/>
@@ -47,6 +48,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="역할"
+            android:minHeight="48dp"
             android:imeOptions="actionNext"
             android:fontFamily="@font/crr"
             android:inputType="text"/>

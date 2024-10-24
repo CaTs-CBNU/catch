@@ -83,7 +83,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="제작소"
-                            android:textColor="@color/black"
+                            android:textColor="#000000"
                             android:fontFamily="@font/crbb"
                             android:textSize="18sp"
                             android:textStyle="bold" />
@@ -92,6 +92,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/crr"
+                            android:textColor="#333333"
                             android:text="오직 나만이 만들 수 있는 특색있는 이야기를 \n제작해보세요"
                             android:textSize="14sp" />
                     </LinearLayout>
@@ -164,13 +165,14 @@
                             android:text="이야기 보따리"
                             android:fontFamily="@font/crbb"
                             android:textSize="18sp"
-                            android:textColor="@color/black"
+                            android:textColor="#000000"
                             android:textStyle="bold" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/crr"
+                            android:textColor="#333333"
                             android:text="내가 만든 이야기들을 한눈에 확인해보세요"
                             android:textSize="14sp" />
                     </LinearLayout>
@@ -195,7 +197,8 @@
         android:id="@+id/linkTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="created by CaTs."
+        android:text="Created by CaTs."
+        android:textStyle="bold"
         android:textColor="@android:color/holo_blue_dark"
         android:textSize="14sp"
         android:layout_margin="16dp"
@@ -212,7 +215,7 @@
         android:layout_height="48dp"
         android:src="@drawable/baseline_info_outline"
         android:contentDescription="Developer Information"
-        android:layout_margin="16dp"
+        android:layout_margin="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:padding="8dp"

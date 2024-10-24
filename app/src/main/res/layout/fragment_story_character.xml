@@ -9,23 +9,24 @@
     android:padding="16dp">
 
     <!-- Title for character selection -->
-    <TextView
-        android:id="@+id/tv_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="등장인물을 설정해주세요!"
-        android:textColor="@color/black"
-        android:fontFamily="@font/crbb"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginBottom="16dp" />
 
     <!-- Help icon for additional information -->
 
     <!-- EditText for character name -->
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/crbb"
+        android:text="등장인물을 설정해주세요!"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <ImageView
         android:id="@+id/helpIcon"
         android:layout_width="wrap_content"
@@ -35,10 +36,10 @@
         android:src="@drawable/baseline_help_24"
         app:layout_constraintBottom_toBottomOf="@id/tv_title"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.136"
+        app:layout_constraintHorizontal_bias="0.142"
         app:layout_constraintStart_toEndOf="@id/tv_title"
         app:layout_constraintTop_toTopOf="@id/tv_title"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.478" />
 
     <EditText
         android:id="@+id/et_character_name"
@@ -46,6 +47,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:hint="등장인물 이름"
+        android:minHeight="48dp"
         android:imeOptions="actionNext"
         android:fontFamily="@font/crr"
         app:layout_constraintTop_toBottomOf="@id/tv_title"
@@ -60,6 +62,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:hint="역할"
+        android:minHeight="48dp"
         android:textColor="@color/black"
         android:fontFamily="@font/crr"
         app:layout_constraintTop_toBottomOf="@id/et_character_name"

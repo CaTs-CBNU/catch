@@ -38,7 +38,9 @@ class StoryViewModel: ViewModel(), ImageListener {
     private val _imagePath = MutableLiveData<String>()
     val imagePath: LiveData<String> get() = _imagePath
 
-
+    // New property for emotion
+    private val _emotion = MutableLiveData<String>()
+    val emotion: LiveData<String> get() = _emotion
 
     init {
         _previousStep.value = 1
@@ -95,6 +97,11 @@ class StoryViewModel: ViewModel(), ImageListener {
 
     fun updateGenerationStoryPlot(text: String) {
         _generationStoryPlot.value = text
+    }
+
+    // New update method for emotion
+    fun updateEmotion(emotion: String) {
+        _emotion.value = emotion
     }
 
     override fun onImageGenerated(imagePath: String) {

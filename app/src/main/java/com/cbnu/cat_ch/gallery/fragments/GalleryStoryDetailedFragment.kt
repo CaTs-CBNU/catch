@@ -34,7 +34,9 @@ import com.example.awesomedialog.title
 import com.github.dhaval2404.imagepicker.ImagePicker
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.io.File
 
 class GalleryStoryDetailedFragment : Fragment() {
@@ -280,10 +282,13 @@ class GalleryStoryDetailedFragment : Fragment() {
 
     private fun toggleFavoriteStatus() {
         storyItem = storyItem.copy(isFavorite = !storyItem.isFavorite)
-        Log.d("GalleryStoryDetailedFragment", "Toggling favorite status: ${storyItem.isFavorite}")
-        lifecycleScope.launch {
+
+        lifecycleScope.launch(Dispatchers.IO) { // IO 디스패처 사용
             updateStoryItemInDatabase(storyItem)
-            updateBookmarkIcon()
+
+            withContext(Dispatchers.Main) { // UI 업데이트는 메인 스레드에서 실행
+                updateBookmarkIcon()
+            }
         }
     }
 
@@ -327,11 +332,11 @@ class GalleryStoryDetailedFragment : Fragment() {
 
 
     private fun updateStoryItemInDatabase(storyItem: StoryItem) {
-        lifecycleScope.launch {
+        lifecycleScope.launch(Dispatchers.IO) { // IO 디스패처를 사용해 백그라운드에서 실행
             val storyEntity = storyItemToEntity(storyItem)
             try {
-                storyDao.update(storyEntity)
-                Log.d("GalleryStoryDetailedFragment", "Update successful")
+                storyDao.update(storyEntity) // 데이터베이스 업데이트
+                Log.d("GalleryStoryDetailedFragment", "Update successful: $storyEntity")
             } catch (e: Exception) {
                 Log.e("GalleryStoryDetailedFragment", "Error updating StoryEntity", e)
             }

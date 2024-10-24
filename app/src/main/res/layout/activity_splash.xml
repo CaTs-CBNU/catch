@@ -18,7 +18,7 @@
         android:fontFamily="@font/crr"
         android:text="자신만의 이야기를"
         android:textColor="@android:color/black"
-        android:textSize="24sp"
+        android:textSize="26sp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -82,4 +82,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="16dp" />
 
+
+    <!-- 화면 하단에 "CaTs" 텍스트 추가 -->
+    <TextView
+        android:id="@+id/text_cats"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/crr"
+        android:text="@string/splash_cats"
+        android:textColor="@android:color/black"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginBottom="16dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

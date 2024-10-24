@@ -176,8 +176,18 @@ class MainActivity : AppCompatActivity() {
             .setTitle("개발자 정보")
             .setMessage(message)
             .setNeutralButton("오픈소스 라이선스") { _, _ ->
-                // Launch OSS licenses activity
-                startActivity(Intent(this, OssLicensesMenuActivity::class.java))
+                // 예외 처리를 통해 NullPointerException 방지
+                try {
+                    startActivity(Intent(this, OssLicensesMenuActivity::class.java))
+                } catch (e: NullPointerException) {
+                    // 예외 발생 시 Toast 메시지 출력 또는 로그 작성
+                    Toast.makeText(this, "오픈소스 라이선스를 불러오는 중 문제가 발생했습니다.", Toast.LENGTH_SHORT).show()
+                    e.printStackTrace()
+                } catch (e: Exception) {
+                    // 다른 예외도 처리
+                    Toast.makeText(this, "예기치 않은 오류가 발생했습니다.", Toast.LENGTH_SHORT).show()
+                    e.printStackTrace()
+                }
             }
             .setPositiveButton("문의/오류제보") { _, _ ->
                 // Send email intent for reporting issues

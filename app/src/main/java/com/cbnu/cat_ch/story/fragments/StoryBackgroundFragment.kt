@@ -22,6 +22,9 @@ import com.example.awesomedialog.icon
 import com.example.awesomedialog.onPositive
 import com.example.awesomedialog.title
 import com.skydoves.powerspinner.SpinnerAnimation
+import smartdevelop.ir.eram.showcaseviewlib.GuideView
+import smartdevelop.ir.eram.showcaseviewlib.config.DismissType
+import smartdevelop.ir.eram.showcaseviewlib.config.Gravity
 
 class StoryBackgroundFragment : Fragment() {
 
@@ -89,12 +92,25 @@ class StoryBackgroundFragment : Fragment() {
             }
         }
 
+        binding.etEmotionCustom.setOnFocusChangeListener { _, hasFocus ->
+            if (!hasFocus && binding.etEmotionCustom.text.isNotEmpty()) {
+                storyViewModel.updateEmotion(binding.etEmotionCustom.text.toString())
+            }
+        }
+
+        binding.etEmotion.setOnSpinnerItemSelectedListener<String> { _, _, _, selectedItem ->
+            storyViewModel.updateEmotion(selectedItem)
+        }
+
         // 이전 저장된 데이터를 사용하여 스피너와 커스텀 입력 필드 초기화
         storyViewModel.atmosphere.observe(viewLifecycleOwner) { atmosphere ->
             if (atmosphere.isNotEmpty()) binding.etAtmosphereCustom.setText(atmosphere)
         }
         storyViewModel.location.observe(viewLifecycleOwner) { location ->
             if (location.isNotEmpty()) binding.etLocationCustom.setText(location)
+        }
+        storyViewModel.emotion.observe(viewLifecycleOwner) { emotion ->
+            if (emotion.isNotEmpty()) binding.etEmotionCustom.setText(emotion)
         }
     }
 
@@ -113,31 +129,29 @@ class StoryBackgroundFragment : Fragment() {
                 binding.etLocation.text.toString()
             }
 
-            // Check if atmosphere is filled
+            val emotion = if (binding.etEmotionCustom.text.isNotEmpty()) {
+                binding.etEmotionCustom.text.toString()
+            } else {
+                binding.etEmotion.text.toString()
+            }
             if (atmosphere.isEmpty()) {
-                AwesomeDialog.build(requireActivity())
-                    .title("알림", titleColor = R.color.black)
-                    .body("분위기를 입력해 주세요.")
-                    .icon(R.drawable.baseline_info_outline)
-                    .onPositive("확인",)
-                    .show()
+                showGuideForMissingAtmosphere()
                 return@setOnClickListener
             }
 
-            // Check if location is filled
             if (location.isEmpty()) {
-                AwesomeDialog.build(requireActivity())
-                    .title("알림", titleColor = R.color.black)
-                    .body("장소를 입력해 주세요.")
-                    .icon(R.drawable.baseline_info_outline)
-                    .onPositive("확인")
-                    .show()
+                showGuideForMissingLocation()
                 return@setOnClickListener
             }
 
+            if (emotion.isEmpty()) {
+                showGuideForMissingEmotion()
+                return@setOnClickListener
+            }
 
             storyViewModel.updateAtmosphere(atmosphere)
             storyViewModel.updateLocation(location)
+            storyViewModel.updateEmotion(emotion)
 
             navController.navigate(
                 R.id.action_storyBackgroundFragment_to_storyPreviewFragment,
@@ -145,5 +159,68 @@ class StoryBackgroundFragment : Fragment() {
                 NavigationUtil.defaultNavOptions
             )
         }
+    }
+
+    // Guide for missing atmosphere
+    private fun showGuideForMissingAtmosphere() {
+        // Scroll to the atmosphere field if necessary
+        binding.etAtmosphere.post {
+            binding.etAtmosphere.requestRectangleOnScreen(
+                Rect(0, 0, binding.llAtmosphere.width, binding.llAtmosphere.height),
+                true
+            )
+        }
+        binding.llAtmosphere.postDelayed({
+            val advancedOptionsGuideView = GuideView.Builder(requireContext())
+                .setTitle("필수 항목")
+                .setContentText("분위기를 선택 또는 입력해 주세요.")
+                .setGravity(Gravity.auto)
+                .setTargetView(binding.llAtmosphere)
+                .setDismissType(DismissType.outside)
+                .build()
+            advancedOptionsGuideView.show()
+        }, 200)
+    }
+
+    // Guide for missing location
+    private fun showGuideForMissingLocation() {
+        // Scroll to the atmosphere field if necessary
+        binding.etAtmosphere.post {
+            binding.etAtmosphere.requestRectangleOnScreen(
+                Rect(0, 0, binding.llLocation.width, binding.llLocation.height),
+                true
+            )
+        }
+        binding.llLocation.postDelayed({
+            val advancedOptionsGuideView = GuideView.Builder(requireContext())
+                .setTitle("필수 항목")
+                .setContentText("장소를 선택 또는 입력해 주세요.")
+                .setGravity(Gravity.auto)
+                .setTargetView(binding.llLocation)
+                .setDismissType(DismissType.outside)
+                .build()
+            advancedOptionsGuideView.show()
+        }, 200)
+    }
+
+    // Guide for missing emotion
+    private fun showGuideForMissingEmotion() {
+        // Scroll to the atmosphere field if necessary
+//        binding.llEmotion.post {
+//            binding.etAtmosphere.requestRectangleOnScreen(
+//                Rect(0, 0, binding.llEmotion.width, binding.llEmotion.height),
+//                true
+//            )
+//        }
+        binding.llEmotion.postDelayed({
+            val advancedOptionsGuideView = GuideView.Builder(requireContext())
+                .setTitle("필수 항목")
+                .setContentText("감정을 선택 또는 입력해 주세요.")
+                .setGravity(Gravity.auto)
+                .setTargetView(binding.llEmotion)
+                .setDismissType(DismissType.outside)
+                .build()
+            advancedOptionsGuideView.show()
+        }, 200)
     }
 }

@@ -28,7 +28,6 @@
                 android:clickable="true"
                 android:focusable="true"
                 android:fontFamily="@font/crb"
-                android:paddingBottom="8dp"
                 android:layout_gravity="center_vertical"
                 android:text="이야기 주제를 선택하세요"
                 android:textColor="@color/black"
@@ -47,36 +46,46 @@
                 android:focusable="true" />
         </LinearLayout>
 
-        <!-- 사전 정의된 주제 선택을 위한 스피너 -->
-        <com.skydoves.powerspinner.PowerSpinnerView
-            android:id="@+id/spinner_topic"
+        <LinearLayout
+            android:id="@+id/ll_topic"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:hint="주제 선택"
-            app:spinner_item_array="@array/story_topics"
-            android:background="@drawable/shape_spinner_box"
-            app:spinner_arrow_gravity="end"
-            app:spinner_divider_color="@color/cat_ch"
-            app:spinner_popup_background="@color/white"
-            app:spinner_divider_show="true"
-            app:fontFamily="@font/crr"
-            android:textColor="@color/black"
-            app:spinner_arrow_drawable="@drawable/baseline_arrow_drop_down_24"
-            android:fontFamily="@font/crr" />
+            android:orientation="vertical">
+            <!-- 사전 정의된 주제 선택을 위한 스피너 -->
+            <com.skydoves.powerspinner.PowerSpinnerView
+                android:id="@+id/spinner_topic"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/shape_spinner_box"
+                android:fontFamily="@font/crr"
+                android:hint="주제 선택"
+                android:gravity="start|center"
+                android:textColor="@color/black"
+                app:fontFamily="@font/crr"
+                app:spinner_arrow_drawable="@drawable/baseline_arrow_drop_down_24"
+                app:spinner_arrow_gravity="end"
+                app:spinner_divider_color="@color/cat_ch"
+                app:spinner_divider_show="true"
+                app:spinner_item_array="@array/story_topics"
+                app:spinner_popup_background="@color/white" />
 
-        <!-- 사용자 정의 주제를 입력할 수 있는 선택적 입력 필드 -->
-        <EditText
-            android:id="@+id/et_custom_topic"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="직접 입력할 주제를 입력하세요"
-            android:fontFamily="@font/crr"
-            android:layout_marginTop="10dp"
-            android:paddingBottom="16dp"
-            android:textColor="@color/black"
-            android:inputType="text" />
-        <!-- 빈 공간을 추가하여 버튼을 아래쪽에 위치시킴 -->
+            <!-- 사용자 정의 주제를 입력할 수 있는 선택적 입력 필드 -->
+            <EditText
+                android:id="@+id/et_custom_topic"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="48dp"
+                android:hint="직접 입력할 주제를 입력하세요"
+                android:fontFamily="@font/crr"
+                android:layout_marginTop="15dp"
+                android:paddingBottom="16dp"
+                android:textColor="@color/black"
+                android:inputType="text" />
+            <!-- 빈 공간을 추가하여 버튼을 아래쪽에 위치시킴 -->
+
+        </LinearLayout>
+
         <Space
             android:layout_width="match_parent"
             android:layout_height="0dp"

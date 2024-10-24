@@ -17,6 +17,7 @@
             android:layout_gravity="center">
 
             <TextView
+                android:layout_marginTop="30dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="배경 설정"
@@ -28,91 +29,151 @@
                 android:layout_gravity="center"
                 android:paddingBottom="16dp" />
 
-            <!-- 분위기 스피너 설명 -->
-            <TextView
+            <!-- 분위기 그룹 -->
+            <LinearLayout
+                android:id="@+id/ll_atmosphere"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="분위기 설정"
-                android:textSize="16sp"
-                android:fontFamily="@font/crb"
-                android:textColor="@color/black"
-                android:paddingBottom="8dp" />
+                android:orientation="vertical"
+                android:paddingBottom="16dp">
 
-            <!-- 분위기 드롭다운 -->
-            <com.skydoves.powerspinner.PowerSpinnerView
-                android:id="@+id/et_atmosphere"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="밝고 힘찬 분위기"
-                android:background="@drawable/shape_spinner_box"
-                app:spinner_arrow_gravity="end"
-                android:textColor="@color/black"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                app:spinner_popup_height="200dp"
-                app:spinner_popup_animation="bounce"
-                app:spinner_arrow_drawable="@drawable/baseline_arrow_drop_down_24"
-                app:spinner_divider_color="@color/cat_ch"
-                app:spinner_popup_background="@color/white"
-                android:layout_gravity="center_vertical"
-                app:spinner_divider_show="true"
-                app:spinner_item_array="@array/background_atmosphere"
-                android:fontFamily="@font/crr"
-                android:padding="8dp"
-               />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="분위기 설정"
+                    android:textSize="16sp"
+                    android:fontFamily="@font/crb"
+                    android:textColor="@color/black"
+                    android:paddingBottom="8dp" />
 
-            <!-- 기후 및 환경 사용자 정의 입력 -->
-            <EditText
-                android:id="@+id/et_atmosphere_custom"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="직접 분위기를 입력하세요"
-                android:textColor="@color/black"
-                android:fontFamily="@font/crr"
-                android:inputType="text"
-                android:paddingBottom="16dp" />
+                <com.skydoves.powerspinner.PowerSpinnerView
+                    android:id="@+id/et_atmosphere"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:hint="밝고 힘찬 분위기"
+                    android:background="@drawable/shape_spinner_box"
+                    app:spinner_arrow_gravity="end"
+                    android:gravity="center|start"
+                    android:textColor="@color/black"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    app:spinner_popup_height="200dp"
+                    app:spinner_popup_animation="bounce"
+                    app:spinner_arrow_drawable="@drawable/baseline_arrow_drop_down_24"
+                    app:spinner_divider_color="@color/cat_ch"
+                    app:spinner_popup_background="@color/white"
+                    android:layout_gravity="center_vertical"
+                    app:spinner_divider_show="true"
+                    app:spinner_item_array="@array/background_atmosphere"
+                    android:fontFamily="@font/crr"
+                    android:padding="8dp" />
 
-            <!-- 장소 스피너 설명 -->
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="장소 설정"
-                android:textSize="16sp"
-                android:fontFamily="@font/crb"
-                android:textColor="@color/black"
-                android:paddingBottom="8dp" />
+                <EditText
+                    android:id="@+id/et_atmosphere_custom"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="직접 분위기를 입력하세요"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/crr"
+                    android:inputType="text"
+                    android:paddingBottom="16dp" />
+            </LinearLayout>
 
-            <!-- 장소 드롭다운 -->
-            <com.skydoves.powerspinner.PowerSpinnerView
-                android:id="@+id/et_location"
+            <!-- 장소 그룹 -->
+            <LinearLayout
+                android:id="@+id/ll_location"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="깊은 숲속"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:background="@drawable/shape_spinner_box"
-                app:spinner_arrow_drawable="@drawable/baseline_arrow_drop_down_24"
-                app:spinner_divider_color="@color/cat_ch"
-                app:spinner_divider_show="true"
-                app:spinner_item_array="@array/background_location"
-                app:spinner_popup_background="@color/white"
-                app:spinner_arrow_gravity="end"
-                android:textColor="@color/black"
-                app:spinner_popup_height="200dp"
-                android:fontFamily="@font/crr"
-                android:padding="8dp"
-                />
+                android:orientation="vertical"
+                android:paddingBottom="16dp">
 
-            <!-- 장소 사용자 정의 입력 -->
-            <EditText
-                android:id="@+id/et_location_custom"
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="장소 설정"
+                    android:textSize="16sp"
+                    android:fontFamily="@font/crb"
+                    android:textColor="@color/black"
+                    android:paddingBottom="8dp" />
+
+                <com.skydoves.powerspinner.PowerSpinnerView
+                    android:id="@+id/et_location"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:hint="깊은 숲속"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/shape_spinner_box"
+                    app:spinner_arrow_drawable="@drawable/baseline_arrow_drop_down_24"
+                    app:spinner_divider_color="@color/cat_ch"
+                    app:spinner_divider_show="true"
+                    android:gravity="center|start"
+                    app:spinner_item_array="@array/background_location"
+                    app:spinner_popup_background="@color/white"
+                    app:spinner_arrow_gravity="end"
+                    android:textColor="@color/black"
+                    app:spinner_popup_height="200dp"
+                    android:fontFamily="@font/crr"
+                    android:padding="8dp" />
+
+                <EditText
+                    android:id="@+id/et_location_custom"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="직접 장소를 입력하세요"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/crr"
+                    android:inputType="text"
+                    android:paddingBottom="16dp" />
+            </LinearLayout>
+
+            <!-- 감정 그룹 -->
+            <LinearLayout
+                android:id="@+id/ll_emotion"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="직접 장소를 입력하세요"
-                android:textColor="@color/black"
-                android:fontFamily="@font/crr"
-                android:inputType="text"
-                android:paddingBottom="16dp" />
+                android:orientation="vertical"
+                android:paddingBottom="16dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="감정 설정"
+                    android:textSize="16sp"
+                    android:fontFamily="@font/crb"
+                    android:textColor="@color/black"
+                    android:paddingBottom="8dp" />
+
+                <com.skydoves.powerspinner.PowerSpinnerView
+                    android:id="@+id/et_emotion"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:hint="희망과 기대"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/shape_spinner_box"
+                    app:spinner_arrow_drawable="@drawable/baseline_arrow_drop_down_24"
+                    app:spinner_divider_color="@color/cat_ch"
+                    app:spinner_divider_show="true"
+                    android:gravity="center|start"
+                    app:spinner_item_array="@array/background_emotion"
+                    app:spinner_popup_background="@color/white"
+                    app:spinner_arrow_gravity="end"
+                    android:textColor="@color/black"
+                    app:spinner_popup_height="200dp"
+                    android:fontFamily="@font/crr"
+                    android:padding="8dp" />
+
+                <EditText
+                    android:id="@+id/et_emotion_custom"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="직접 감정을 입력하세요"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/crr"
+                    android:inputType="text"
+                    android:paddingBottom="16dp" />
+            </LinearLayout>
 
             <Space
                 android:layout_width="match_parent"

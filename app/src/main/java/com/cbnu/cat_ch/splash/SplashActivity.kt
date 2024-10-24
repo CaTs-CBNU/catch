@@ -3,6 +3,8 @@ package com.cbnu.cat_ch.splash
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.cbnu.cat_ch.databinding.ActivitySplashBinding
@@ -13,6 +15,7 @@ import com.cbnu.cat_ch.MainActivity
 class SplashActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySplashBinding
+    private val handler = Handler(Looper.getMainLooper()) // Main thread에서 실행되는 핸들러
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,6 +31,7 @@ class SplashActivity : AppCompatActivity() {
         binding.textS.alpha = 0f
         binding.textCatch.alpha = 0f
         binding.textTch.alpha = 0f
+        binding.textCats.text = ""  // CaTs 텍스트를 공백으로 시작
 
         // 첫 번째 텍스트: "자신만의 이야기를" 페이드 인
         binding.textIntro.animate()
@@ -56,8 +60,9 @@ class SplashActivity : AppCompatActivity() {
                     .setDuration(1000)
                     .setStartDelay(400) // "스캐치"가 완전히 나타난 후
                     .withEndAction {
-                        // 페이드 아웃 후 MainActivity로 전환
-                        fadeOutAndNavigateToMain()
+
+                        // CaTs. 텍스트 애니메이션 시작
+                        animateCatsText()
                     }
                     .start()
             }
@@ -91,7 +96,26 @@ class SplashActivity : AppCompatActivity() {
             }
             .start()
     }
+    // "CaTs." 텍스트를 하나씩 시간차를 두고 나타내기 위한 함수
+    private fun animateCatsText() {
+        val text = "CaTs."
+        var currentText = ""
+        val delay: Long = 400 // 각 글자가 나타나는 시간 간격 (밀리초)
+        binding.textCats.visibility = View.VISIBLE
 
+        // 각 글자를 400ms 간격으로 추가
+        for (i in text.indices) {
+            handler.postDelayed({
+                currentText += text[i]
+                binding.textCats.text = currentText // 갱신된 텍스트 설정
+
+                // 마지막 글자가 추가되었을 때 MainActivity로 전환
+                if (i == text.length - 1) {
+                    fadeOutAndNavigateToMain()
+                }
+            }, i * delay)
+        }
+    }
 
     // MainActivity로 이동하는 함수
     private fun navigateToMainActivity() {

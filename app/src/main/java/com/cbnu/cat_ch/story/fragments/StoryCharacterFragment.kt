@@ -2,6 +2,7 @@ package com.cbnu.cat_ch.story.fragments
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -18,6 +19,13 @@ import com.cbnu.cat_ch.gallery.util.NavigationUtil
 import com.cbnu.cat_ch.story.adapter.CharacterRoleAdapter
 import com.cbnu.cat_ch.story.data.CharacterRole
 import com.cbnu.cat_ch.story.viewmodel.StoryViewModel
+import com.example.awesomedialog.AwesomeDialog
+import com.example.awesomedialog.body
+import com.example.awesomedialog.icon
+import com.example.awesomedialog.onNegative
+import com.example.awesomedialog.onPositive
+import com.example.awesomedialog.title
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import smartdevelop.ir.eram.showcaseviewlib.GuideView
 import smartdevelop.ir.eram.showcaseviewlib.config.DismissType
 import smartdevelop.ir.eram.showcaseviewlib.config.Gravity
@@ -63,8 +71,13 @@ class StoryCharacterFragment : Fragment() {
             showGuidesSequentially()
         }
         binding.btnNext.setOnClickListener {
-            // Save character roles to ViewModel before navigating
-            navController.navigate(R.id.action_storyCharacterFragment_to_storyPlotFragment,null, NavigationUtil.defaultNavOptions)
+            if (characterRoles.isEmpty()) {
+                // 등장인물이 없는 경우 안내 메시지를 띄움
+                showCharacterMissingDialog()
+            } else {
+                // 등장인물이 있는 경우 다음 화면으로 이동
+                navController.navigate(R.id.action_storyCharacterFragment_to_storyPlotFragment, null, NavigationUtil.defaultNavOptions)
+            }
         }
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
             navController.navigate(R.id.action_storyCharacterFragment_to_storyTopicFragment,null, NavigationUtil.defaultNavOptions)
@@ -144,5 +157,21 @@ class StoryCharacterFragment : Fragment() {
             }
             .build()
         fourthGuideView.show()
+    }
+
+    private fun showCharacterMissingDialog() {
+        AwesomeDialog.build(requireActivity())
+            .title("잊으셨나요?", titleColor = R.color.black)
+            .body("등장인물이 설정되지 않았어요! 등장인물을 추가하면 이야기가 더 재미있어질 거예요.\n" +
+                    "그래도 다음 화면으로 넘어가시겠어요?")
+            .icon(R.drawable.baseline_info_outline)
+            .onPositive("네") {
+                Log.d("TAG", "positive ")
+                // Navigate to MainActivity
+                navController.navigate(R.id.action_storyCharacterFragment_to_storyPlotFragment, null, NavigationUtil.defaultNavOptions)
+            }
+            .onNegative("아니요",) {
+                Log.d("TAG", "negative ")
+            }
     }
 }

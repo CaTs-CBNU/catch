@@ -65,6 +65,15 @@ class StoryPlotFragment : Fragment() {
         // Observe ViewModel's character roles
         storyViewModel.characterRoles.observe(viewLifecycleOwner) { characterRoles ->
             characterRoleAdapter.updateData(characterRoles)
+            if (characterRoles.isNullOrEmpty()) {
+                // 등장인물이 없을 때 "등장인물 설정되지 않음!" 표시
+                binding.tvNoCharacters.visibility = View.VISIBLE
+                binding.rvCharacterList.visibility = View.GONE
+            } else {
+                // 등장인물이 있을 때 RecyclerView 표시
+                binding.tvNoCharacters.visibility = View.GONE
+                binding.rvCharacterList.visibility = View.VISIBLE
+            }
         }
         binding.etPlotDescription.setText(storyViewModel.storyPlot.value)
         // 드롭다운 선택 시 EditText에 예시 내용 추가
@@ -87,7 +96,7 @@ class StoryPlotFragment : Fragment() {
                     .title("알림", titleColor = R.color.black)
                     .body("스토리를 선택하거나 입력해 주세요.")
                     .icon(R.drawable.baseline_info_outline)
-                    .onPositive("확인", buttonBackgroundColor = R.color.cat_ch)
+                    .onPositive("확인")
                     .show()
                 return@setOnClickListener
             } else {

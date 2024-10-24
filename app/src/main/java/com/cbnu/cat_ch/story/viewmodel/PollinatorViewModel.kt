@@ -7,6 +7,8 @@ import android.net.Uri
 import android.os.Environment
 import android.provider.MediaStore
 import android.widget.Toast
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.cbnu.cat_ch.R
@@ -35,6 +37,10 @@ class PollinatorViewModel(private val repository: GenerationRepository) : ViewMo
 
     private val _model = MutableStateFlow(Models.getDefaultModel())
     val model: StateFlow<Model> = _model
+
+    // 이미지 생성 중 상태를 추적하는 LiveData
+    private val _isGeneratingImage = MutableLiveData<Boolean>().apply { value = false }
+    val isGeneratingImage: LiveData<Boolean> = _isGeneratingImage
 
     var listener: ImageListener? = null
 
@@ -75,6 +81,8 @@ class PollinatorViewModel(private val repository: GenerationRepository) : ViewMo
     }
 
     fun generateImage(context: Context) {
+        _isGeneratingImage.value = true  // 이미지 생성 시작
+
         _uiState.update { currentState ->
             currentState.copy(
                 bitmap = null,
@@ -104,6 +112,7 @@ class PollinatorViewModel(private val repository: GenerationRepository) : ViewMo
                     handleError("Network Error")
                 }
             }
+            _isGeneratingImage.value = false  // 이미지 생성 완료
         }
     }
 
@@ -210,5 +219,9 @@ class PollinatorViewModel(private val repository: GenerationRepository) : ViewMo
                 height = height,
             )
         }
+    }
+
+    fun setGeneratingImage(isGenerating: Boolean) {
+        _isGeneratingImage.value = isGenerating
     }
 }

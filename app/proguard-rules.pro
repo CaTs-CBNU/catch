@@ -19,3 +19,5 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+# JSON 및 Retrofit 규칙 (필요시)
+-keepclassmembers class **.BuildConfig { *; }

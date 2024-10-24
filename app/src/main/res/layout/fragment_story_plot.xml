@@ -23,6 +23,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:layout_marginBottom="10dp"
                 android:orientation="horizontal">
 
                 <!-- TextView -->
@@ -31,7 +32,6 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/crb"
                     android:gravity="center"
-                    android:paddingBottom="16dp"
                     android:text="스토리를 자유롭게 작성해주세요"
                     android:textColor="@color/black"
                     android:textSize="16sp"
@@ -65,6 +65,14 @@
                 android:scrollHorizontally="false"
                 android:textColor="@color/plot_text_color" />
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="예시를 선택하여 작성하는 것도 가능합니다."
+                android:layout_margin="2dp"
+                android:textColor="@color/hint_text_color"
+                />
+
             <!-- 예시 드롭다운 (PowerSpinnerView 사용) -->
             <com.skydoves.powerspinner.PowerSpinnerView
                 android:id="@+id/spinner_plot_example"
@@ -89,6 +97,19 @@
                 android:layout_gravity="center"
                 android:background="@android:color/white"
                 android:padding="8dp"/>
+
+            <TextView
+                android:id="@+id/tvNoCharacters"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="등장인물 설정되지 않음!"
+                android:textSize="16sp"
+                android:textColor="@android:color/darker_gray"
+                android:layout_gravity="center"
+                android:visibility="gone"
+                android:layout_marginTop="16dp"
+                />
+
 
             <!-- Next button -->
             <Button

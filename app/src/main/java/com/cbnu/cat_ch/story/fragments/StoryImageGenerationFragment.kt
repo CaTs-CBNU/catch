@@ -59,6 +59,7 @@ class StoryImageGenerationFragment : Fragment() {
     private lateinit var genreSpinner: PowerSpinnerView
     private lateinit var compositionSpinner: PowerSpinnerView
     private lateinit var generativeModel: GenerativeModel
+    private var isGeneratingImage = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -122,9 +123,28 @@ class StoryImageGenerationFragment : Fragment() {
                 generateImage()
             }
         }
+        // ViewModel의 상태를 관찰하여 UI에 반영
+        pollinatorViewModel.isGeneratingImage.observe(viewLifecycleOwner) { isGenerating ->
+            if (isGenerating) {
+                // 이미지 생성 중이면 버튼 비활성화
+                binding.pollinateButton.isEnabled = false
+            } else {
+                // 이미지 생성이 완료되면 버튼 활성화
+                binding.pollinateButton.isEnabled = true
+            }
+        }
+
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
-            storyViewModel.updatePreviousStep(6)
-            navController.navigate(R.id.action_storyImageGenerationFragment_to_storyPreviewFragment, null, NavigationUtil.defaultNavOptions)
+            if(isGeneratingImage){
+                Toast.makeText(requireContext(), "프롬프트 생성 중입니다. 완료 후 뒤로 가기 가능합니다.", Toast.LENGTH_SHORT).show()
+                return@addCallback
+            }
+            if (pollinatorViewModel.isGeneratingImage.value == true) {
+                // 이미지 생성 중일 때는 뒤로 가기 비활성화
+                Toast.makeText(requireContext(), "이미지 생성 중입니다. 완료 후 뒤로 가기 가능합니다.", Toast.LENGTH_SHORT).show()
+            } else {
+                navController.navigateUp()  // 뒤로 가기
+            }
         }
     }
 
@@ -159,6 +179,7 @@ class StoryImageGenerationFragment : Fragment() {
     }
 
     private suspend fun generateImagePrompt(): String? {
+        isGeneratingImage = true // 이미지 생성 중임을 표시
         binding.pollinateButton.isEnabled = false
         binding.progressIndicatorPrompt.visibility = View.VISIBLE
         requireActivity().window.setFlags(
@@ -193,6 +214,12 @@ class StoryImageGenerationFragment : Fragment() {
             binding.progressIndicatorPrompt.visibility = View.GONE
             e.printStackTrace()
             null // Return null in case of error
+        } finally {
+            isGeneratingImage = false // 이미지 생성 중임을 표시
+
+            requireActivity().window.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
+            binding.pollinateButton.isEnabled = true
+            binding.progressIndicatorPrompt.visibility = View.GONE
         }
     }
 
@@ -208,14 +235,22 @@ class StoryImageGenerationFragment : Fragment() {
         pollinatorViewModel.generateImage(requireContext())
     }
     private suspend fun generateImage() {
-        // 프롬프트 생성 단계
+        // 이미지 생성 버튼이 눌렸을 때 필수 옵션이 선택되었는지 확인
+        if (!checkRequiredOptionsSelected()) {
+            // 선택되지 않았을 때는 이미지 생성 중지
+            return
+        }
+
+        isGeneratingImage = true // 이미지 생성 중임을 표시
+
         val generatedPrompt = generateImagePrompt()
         generatedPrompt?.let {
-            // 모델 인풋 단계
             processGeneratedPrompt(it)
         }
+
         requireActivity().window.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
     }
+
 
 
     private fun expandAdvancedOptions() {
@@ -373,7 +408,8 @@ class StoryImageGenerationFragment : Fragment() {
                 true
             )
         }
-        binding.advancedOptionsContainer3.postDelayed({    val advancedOptionsGuideView = GuideView.Builder(requireContext())
+        binding.advancedOptionsContainer3.postDelayed({
+            val advancedOptionsGuideView = GuideView.Builder(requireContext())
             .setTitle("고급 옵션 도움말")
             .setContentText("이미지의 크기를 설정할 수 있습니다.")
             .setGravity(Gravity.auto)
@@ -387,5 +423,107 @@ class StoryImageGenerationFragment : Fragment() {
 
 
 
+    }
+
+    // 필수 옵션 확인 함수
+    private fun checkRequiredOptionsSelected(): Boolean {
+        val isAllSelected = genreSpinner.text.isNotEmpty() && compositionSpinner.text.isNotEmpty()
+        // AdvancedOptions가 닫혀 있는 경우 먼저 열기
+        if (!isExpanded) {
+            expandAdvancedOptions()
+            isExpanded = true
+
+            // 스크롤하여 AdvancedOptions를 화면에 표시
+            binding.advancedOptionsContainer.post {
+                binding.advancedOptionsContainer.requestRectangleOnScreen(
+                    Rect(0, 0, binding.advancedOptionsContainer.width, binding.advancedOptionsContainer.height),
+                    true
+                )
+            }
+        }
+        // 모든 옵션이 선택된 경우에만 true 반환
+        return if (isAllSelected) {
+            binding.pollinateButton.isEnabled = true
+            true
+        } else {
+            // 옵션이 선택되지 않았다면 가이드뷰 표시
+            showGuideForUnselectedOption()
+            false
+        }
+    }
+
+    // 가이드뷰를 표시하는 함수
+    private fun showGuideForUnselectedOption() {
+        // 가이드뷰 포커스: 선택되지 않은 옵션에 가이드뷰 표시
+        if (genreSpinner.text.isEmpty() && compositionSpinner.text.isEmpty()) {
+            showGuideForGenreCompositionSelection()
+        } else if (genreSpinner.text.isEmpty()) {
+            showGuideForGenreSelection()
+        } else if (compositionSpinner.text.isEmpty()) {
+            showGuideForCompositionSelection()
+        }
+    }
+
+    private fun showGuideForGenreCompositionSelection(){
+        // 스크롤을 내린 후 해당 위치로 초점 맞춤
+        binding.advancedOptionsContainer2.post {
+            binding.advancedOptionsContainer2.requestRectangleOnScreen(
+                Rect(0, 0, binding.advancedOptionsContainer2.width, binding.advancedOptionsContainer2.height),
+                true
+            )
+        }
+        binding.advancedOptionsContainer2.postDelayed({
+            val advancedOptionsGuideView = GuideView.Builder(requireContext())
+                .setTitle("필수 항목")
+                .setContentText("이미지의 장르와 구도를 선택해주세요.")
+                .setGravity(Gravity.auto)
+                .setTargetView(binding.advancedOptionsContainer2)
+                .setDismissType(DismissType.outside)
+                .build()
+            advancedOptionsGuideView.show()
+        }, 200)
+    }
+    private fun showGuideForGenreSelection() {
+        // 스크롤을 내린 후 해당 위치로 초점 맞춤
+        binding.genreDropdown.post {
+            binding.genreDropdown.requestRectangleOnScreen(
+                Rect(0, 0, binding.genreDropdown.width, binding.genreDropdown.height),
+                true
+            )
+        }
+
+        binding.genreDropdown.postDelayed({
+            val genreGuideView = GuideView.Builder(requireContext())
+                .setTitle("필수 항목")
+                .setContentText("이미지의 장르를 선택해주세요.")
+                .setGravity(Gravity.auto)
+                .setTargetView(genreSpinner)
+                .setDismissType(DismissType.outside)
+                .build()
+
+            genreGuideView.show()
+        }, 200)
+    }
+
+    private fun showGuideForCompositionSelection() {
+
+        // 스크롤을 내린 후 해당 위치로 초점 맞춤
+        binding.compositionDropdown.post {
+            binding.compositionDropdown.requestRectangleOnScreen(
+                Rect(0, 0, binding.compositionDropdown.width, binding.compositionDropdown.height),
+                true
+            )
+        }
+        binding.compositionDropdown.postDelayed({
+            val compositionGuideView = GuideView.Builder(requireContext())
+                .setTitle("필수 항목")
+                .setContentText("이미지의 구도를 선택해주세요.")
+                .setGravity(Gravity.auto)
+                .setTargetView(compositionSpinner)
+                .setDismissType(DismissType.outside)
+                .build()
+
+            compositionGuideView.show()
+        }, 200)
     }
 }

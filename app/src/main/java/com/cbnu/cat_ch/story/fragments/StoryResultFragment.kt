@@ -13,6 +13,7 @@ import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.Toast
 import androidx.activity.addCallback
+import androidx.core.content.ContextCompat
 import androidx.core.net.toUri
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
@@ -26,6 +27,12 @@ import com.cbnu.cat_ch.gallery.util.NavigationUtil
 import com.cbnu.cat_ch.story.room.db.StoryDatabase
 import com.cbnu.cat_ch.story.room.entity.StoryEntity
 import com.cbnu.cat_ch.story.viewmodel.StoryViewModel
+import com.example.awesomedialog.AwesomeDialog
+import com.example.awesomedialog.body
+import com.example.awesomedialog.icon
+import com.example.awesomedialog.onNegative
+import com.example.awesomedialog.onPositive
+import com.example.awesomedialog.title
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kotlinx.coroutines.launch
 
@@ -71,10 +78,9 @@ class StoryResultFragment : Fragment() {
             showSaveConfirmationDialog()
         }
 
+        // 뒤로 가기 버튼 누르면 저장을 그만두겠냐는 메시지를 띄우도록 설정
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
-            storyViewModel.updatePreviousStep(7)
-
-            navController.navigate(R.id.action_storyResultFragment_to_storyImageGenerationFragment, null, NavigationUtil.defaultNavOptions)
+            showCancelSaveConfirmationDialog()
         }
     }
 
@@ -127,6 +133,7 @@ class StoryResultFragment : Fragment() {
         // Create an EditText for the dialog input
         val titleEditText = EditText(requireContext()).apply {
             hint = "이야기 제목"
+            setHintTextColor( ContextCompat.getColor(requireContext(), R.color.hintTextColorDark)) // 힌트 색상 설정
             filters = arrayOf(InputFilter.LengthFilter(30)) // Limit to 30 characters
         }
         // Add TextWatcher to show a warning if 30 characters are exceeded
@@ -160,5 +167,30 @@ class StoryResultFragment : Fragment() {
                 dialog.dismiss()
             }
             .show()
+    }
+
+    // 저장 취소 확인 다이얼로그 표시
+    private fun showCancelSaveConfirmationDialog() {
+        AwesomeDialog.build(requireActivity())
+            .title("이야기 저장을 그만두시겠습니까?", titleColor = R.color.black)
+            .body("이야기 생성 중단시 작성된 내용은 저장되지 않습니다.")
+            .icon(R.drawable.baseline_info_outline)
+            .onPositive("네") {
+                Log.d("TAG", "positive ")
+                // Navigate to MainActivity
+                navigateToMainScreen()
+            }
+            .onNegative("아니요",) {
+                Log.d("TAG", "negative ")
+            }
+    }
+
+    private fun navigateToMainScreen() {
+        // 메인 화면으로 이동하며 스택을 모두 제거
+        val intent = Intent(requireContext(), MainActivity::class.java).apply {
+            flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        }
+        startActivity(intent)
+        requireActivity().finish() // 현재 액티비티를 종료하여 스택을 비움
     }
 }

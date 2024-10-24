@@ -10,5 +10,6 @@
     <color name="story_preview_background">#E8EAF6</color> <!-- Light blue color -->
     <color name="story_preview_text">#1497D2</color> <!-- Black color -->
     <color name="cat_ch">#FFD653</color>
+    <color name="hintTextColorDark">#000000</color>
 
 </resources>

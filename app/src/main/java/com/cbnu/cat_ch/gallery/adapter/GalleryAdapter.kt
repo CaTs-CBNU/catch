@@ -138,8 +138,15 @@ class GalleryAdapter(private var context: Context, private var items: List<Any>,
             binding.storyTitle.text = storyItem.storyTitle
             binding.storyContent.text = storyItem.storyText
 
+
             // Show overlay when item is selected
             binding.selectionOverlay.visibility = if (isSelected) View.VISIBLE else View.GONE
+
+            // 북마크 상태에 따라 아이콘 설정
+            binding.bookmarkButton.setImageResource(
+                if (storyItem.isFavorite) R.drawable.baseline_bookmark_24
+                else R.drawable.baseline_bookmark_border_24
+            )
 
             // Set default image if there’s no story image path
             if (storyItem.storyImagePath.isNullOrEmpty()) {

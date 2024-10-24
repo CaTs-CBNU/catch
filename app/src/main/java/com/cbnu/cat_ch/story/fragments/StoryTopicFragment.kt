@@ -10,7 +10,6 @@ import androidx.activity.addCallback
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
-import androidx.navigation.NavOptions
 import androidx.navigation.Navigation
 import com.cbnu.cat_ch.R
 import com.cbnu.cat_ch.databinding.FragmentStoryTopicBinding
@@ -67,13 +66,7 @@ class StoryTopicFragment : Fragment() {
             } else if (selectedTopic.isNotEmpty()) {
                 storyViewModel.setStoryTopic(selectedTopic)
             } else {
-                // Prompt the user if neither is selected
-                AwesomeDialog.build(requireActivity())
-                    .title("알림", titleColor = R.color.black)
-                    .body("주제를 선택하거나 입력해 주세요.")
-                    .icon(R.drawable.baseline_info_outline)
-                    .onPositive("확인")
-                    .show()
+                showGuideForGenreCompositionSelection()
                 return@setOnClickListener
             }
             navController.navigate(
@@ -182,5 +175,17 @@ class StoryTopicFragment : Fragment() {
             }
             .build()
         thirdGuideView.show()
+    }
+    private fun showGuideForGenreCompositionSelection(){
+        binding.llTopic.postDelayed({
+            val advancedOptionsGuideView = GuideView.Builder(requireContext())
+                .setTitle("필수 항목")
+                .setContentText("이야기의 주제를 선택 및 작성해주세요.")
+                .setGravity(Gravity.auto)
+                .setTargetView(binding.llTopic)
+                .setDismissType(DismissType.outside)
+                .build()
+            advancedOptionsGuideView.show()
+        }, 200)
     }
 }
